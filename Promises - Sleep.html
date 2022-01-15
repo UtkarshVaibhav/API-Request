@@ -1,0 +1,45 @@
+<!-- // Make a function that returns a new promise
+// the user should be able to provide it time in milli seconds
+// on success user should receive an object that will have a property success with a value true and a message "success"
+// the promise will fail if the value provided is not a number,
+// on failure user should receive an object with a property success as false, and message "invalid argument, promise accepts only valid numbers"
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+function returnPromise(time){
+    var myPromise = new Promise(function (resolve,reject){
+        var output={};
+        if(typeof(time)==="number"){
+            output={
+                success: "true",
+                message: "success"
+            };
+            resolve(output);
+        }
+        else{
+            output={
+                success: "false",
+                message: "invalid argument, promise accepts only valid numbers"
+            };
+            reject(output);
+        }
+    });
+    return myPromise;
+}
+returnPromise("1000").then(function(res){
+    console.log(res);
+}).catch(function(err){
+console.log(err);
+});
+</script>

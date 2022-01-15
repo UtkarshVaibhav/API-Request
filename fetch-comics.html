@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comics</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: grid;
+            grid-template-columns: 250px 250px 250px;
+            justify-content: center;
+            gap: 15px;
+            width: 800px;
+            margin: auto;
+        }
+        .box{
+            border: 2px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: white;
+            padding: 10px;
+        }
+        img{
+            border: 2px solid black;
+            margin-bottom: 10px;
+        }
+        @media screen and (max-width: 426px) {
+            .container{
+                display: grid;
+                grid-template-columns: 190px 190px;
+                justify-content: center;
+                gap: 10px;
+                width: 100%;
+                margin: auto;
+        }
+        }
+        @media screen and (max-width: 376px) {
+            .container{
+                display: grid;
+                grid-template-columns: 175px 175px;
+                justify-content: center;
+                gap: 10px;
+                width: 100%;
+                margin: auto;
+        }
+        }
+        @media screen and (max-width: 321px) {
+            .container{
+                display: grid;
+                grid-template-columns: 255px;
+                justify-content: center;
+                gap: 10px;
+                width: 100%;
+                margin: auto;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+    </div>
+</body>
+</html>
+<script>
+    var url="https://reqres.in/api/users";
+    fetch(url)
+    .then(function(res){
+        return res.json()
+    })
+    .then(function(final_res){
+        appendData(final_res);
+    })
+    .catch(function(err){
+        console.log("Error",err);
+    });
+    
+    function appendData(data){
+        data.data.forEach(function(el){
+        var div=document.createElement("div");
+        div.className="box";
+        var image=document.createElement("img");
+        image.src=el.avatar;
+        var name=document.createElement("p");
+        name.innerHTML="Name:  "+el.first_name+el.last_name;
+        var email=document.createElement("p");
+        email.innerHTML="Email: "+el.email;
+        div.append(image,name,email);
+        document.querySelector(".container").append(div);
+        })
+    }
+</script>
